@@ -32,6 +32,7 @@ void print_s(const void *r) {
 int main ()
 {
     int i = 0;
+    int ret;
     LLIST *handler;
     struct score_st temp;
     handler = llist_create(sizeof(struct score_st));
@@ -44,14 +45,17 @@ int main ()
         temp.math = rand()%100;
         temp.chinese = rand()%100;
         snprintf(temp.name, NAME_SIZE, "std%d", i);
-        llist_insert(handler, &temp, LLIST_BACKWARD);
+
+        ret = handler->insert(handler, &temp, LLIST_BACKWARD);
+        if(ret)
+            exit(1);
     }
-    llist_travel(handler, print_s);
+    handler->travel(handler, print_s);
 
     printf("\n\n");
     int id = 8;
     struct score_st *data;
-    data = llist_find(handler, &id, id_cmp);
+    data = handler->find(handler, &id, id_cmp);
     if(data == NULL)
         printf("can't find");
     else
