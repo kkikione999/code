@@ -1,0 +1,10 @@
+{
+    "aide.convertLanguagePairs": {
+        "c": "cpp"
+    },
+    "files.associations": {
+        "stdlib.h": "c",
+        "stdio.h": "c",
+        "llist.h": "c"
+    }
+}

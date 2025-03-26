@@ -23,7 +23,4 @@ void st_travel(sqstack *st);
 
 int st_pop(sqstack* st, datatype* data);
 
-
-
-
 #endif

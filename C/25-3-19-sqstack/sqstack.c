@@ -51,5 +51,3 @@ int st_pop(sqstack* st, datatype* data)
     *data = st->data[st->top--];
     return 0;
 }
-
-
