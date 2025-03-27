@@ -11,13 +11,25 @@ void insertsort(int *arr, int size)
         key = arr[i];
         //在arr[i]之前
         //只要比arr[i]大就往后挪一个位置
-        while (j<size && arr[j]>key)
+        while (j>=0 && arr[j]>key)                      //注意j>=0以防数组越界
         {
             arr[j+1] = arr[j];
             j--;
         }
-        //到循环结束之间进行了一次i--
         arr[j+1] = key;
+    }
+}
+void insertSort(int* arr, int size)
+{
+    int temp, j;
+    for (int i = 1; i < size; i++) {
+        temp = arr[i];
+        for(j = i; temp < arr[j-1] && j >= 1; j--)      //注意j>=1，如果写成j>=0的话
+														//数组会越界
+        {
+            arr[j] = arr[j-1];
+        }
+        arr[j] = temp;
     }
 }
 
