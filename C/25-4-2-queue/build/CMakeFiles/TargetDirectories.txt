@@ -1,0 +1,3 @@
+/media/kkikione/D/code/C/25-4-2-queue/build/CMakeFiles/my_program.dir
+/media/kkikione/D/code/C/25-4-2-queue/build/CMakeFiles/edit_cache.dir
+/media/kkikione/D/code/C/25-4-2-queue/build/CMakeFiles/rebuild_cache.dir

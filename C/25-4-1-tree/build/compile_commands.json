@@ -1,0 +1,14 @@
+[
+{
+  "directory": "D:/code/C/25-4-1-tree/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\gcc.exe  @CMakeFiles/main.dir/includes_C.rsp -g -std=gnu99 -o CMakeFiles\\main.dir\\D_\\code\\C\\25-4-1-tree\\main.c.obj -c D:\\code\\C\\25-4-1-tree\\main.c",
+  "file": "D:/code/C/25-4-1-tree/main.c",
+  "output": "CMakeFiles/main.dir/D_/code/C/25-4-1-tree/main.c.obj"
+},
+{
+  "directory": "D:/code/C/25-4-1-tree/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\gcc.exe  @CMakeFiles/main.dir/includes_C.rsp -g -std=gnu99 -o CMakeFiles\\main.dir\\D_\\code\\C\\25-4-1-tree\\tree.c.obj -c D:\\code\\C\\25-4-1-tree\\tree.c",
+  "file": "D:/code/C/25-4-1-tree/tree.c",
+  "output": "CMakeFiles/main.dir/D_/code/C/25-4-1-tree/tree.c.obj"
+}
+]
