@@ -1,0 +1,3 @@
+/media/kkikione/D/code/C/25-4-3-threadtree/build/CMakeFiles/threadtree.dir
+/media/kkikione/D/code/C/25-4-3-threadtree/build/CMakeFiles/edit_cache.dir
+/media/kkikione/D/code/C/25-4-3-threadtree/build/CMakeFiles/rebuild_cache.dir

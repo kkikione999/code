@@ -1,0 +1,1 @@
+/usr/bin/cc CMakeFiles/threadtree.dir/main.c.o -o threadtree 
