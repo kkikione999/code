@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "D:/code/leetcode/49-01bagquestion/cmake-build-debug",
+	"dir-cur-src" : "D:/code/leetcode/49-01bagquestion",
+	"dir-top-bld" : "D:/code/leetcode/49-01bagquestion/cmake-build-debug",
+	"dir-top-src" : "D:/code/leetcode/49-01bagquestion",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "D:/code/leetcode/49-01bagquestion/cmake-build-debug/CMakeFiles/49_01bagquestion.dir"
+}

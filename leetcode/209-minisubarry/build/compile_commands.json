@@ -1,0 +1,8 @@
+[
+{
+  "directory": "D:/code/leetcode/209-minisubarry/build",
+  "command": "C:\\PROGRA~1\\mingw64\\bin\\gcc.exe   -g -o CMakeFiles\\Myproject.dir\\main.c.obj -c D:\\code\\leetcode\\209-minisubarry\\main.c",
+  "file": "D:/code/leetcode/209-minisubarry/main.c",
+  "output": "CMakeFiles/Myproject.dir/main.c.obj"
+}
+]

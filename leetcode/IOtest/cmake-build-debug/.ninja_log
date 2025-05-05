@@ -1,0 +1,19 @@
+# ninja log v6
+4	203	7664981393549967	CMakeFiles/IOtest.dir/main.cpp.obj.ddi	3c0aca232affa036
+203	260	7664981396067019	CMakeFiles/IOtest.dir/CXX.dd	74427e9b9bbfc942
+203	260	7664981396067019	D:/code/leetcode/IOtest/cmake-build-debug/CMakeFiles/IOtest.dir/CXXModules.json	74427e9b9bbfc942
+203	260	7664981396067019	CMakeFiles/IOtest.dir/main.cpp.obj.modmap	74427e9b9bbfc942
+261	1280	7664981396117025	CMakeFiles/IOtest.dir/main.cpp.obj	67c056149d675c41
+1283	1473	7664981406331848	IOtest.exe	32149e9e0dcc9514
+6	192	7664984508673890	CMakeFiles/IOtest.dir/main.cpp.obj.ddi	3c0aca232affa036
+192	229	7664984510533914	CMakeFiles/IOtest.dir/CXX.dd	74427e9b9bbfc942
+192	229	7664984510533914	D:/code/leetcode/IOtest/cmake-build-debug/CMakeFiles/IOtest.dir/CXXModules.json	74427e9b9bbfc942
+192	229	7664984510533914	CMakeFiles/IOtest.dir/main.cpp.obj.modmap	74427e9b9bbfc942
+231	1358	7664984510933872	CMakeFiles/IOtest.dir/main.cpp.obj	67c056149d675c41
+1359	1615	7664984522206111	IOtest.exe	32149e9e0dcc9514
+6	198	7664986491247633	CMakeFiles/IOtest.dir/main.cpp.obj.ddi	3c0aca232affa036
+199	237	7664986493171786	CMakeFiles/IOtest.dir/CXX.dd	74427e9b9bbfc942
+199	237	7664986493171786	D:/code/leetcode/IOtest/cmake-build-debug/CMakeFiles/IOtest.dir/CXXModules.json	74427e9b9bbfc942
+199	237	7664986493171786	CMakeFiles/IOtest.dir/main.cpp.obj.modmap	74427e9b9bbfc942
+238	1316	7664986493561787	CMakeFiles/IOtest.dir/main.cpp.obj	67c056149d675c41
+1317	1496	7664986504350123	IOtest.exe	32149e9e0dcc9514

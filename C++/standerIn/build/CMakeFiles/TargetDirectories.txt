@@ -1,0 +1,3 @@
+D:/code/C++/standerIn/build/CMakeFiles/a.exe.dir
+D:/code/C++/standerIn/build/CMakeFiles/edit_cache.dir
+D:/code/C++/standerIn/build/CMakeFiles/rebuild_cache.dir

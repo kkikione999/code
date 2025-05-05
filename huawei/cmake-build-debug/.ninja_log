@@ -1,0 +1,7 @@
+# ninja log v6
+7	211	7671157196772392	CMakeFiles/huawei.dir/main.cpp.obj.ddi	de7d6aaae2c9ea1c
+211	257	7671157198819435	CMakeFiles/huawei.dir/CXX.dd	8dd4e0c56ffffc9b
+258	1194	7671157199286681	CMakeFiles/huawei.dir/main.cpp.obj	a26aaa5b64a5e4d
+211	257	7671157198819435	D:/code/huawei/cmake-build-debug/CMakeFiles/huawei.dir/CXXModules.json	8dd4e0c56ffffc9b
+211	257	7671157198819435	CMakeFiles/huawei.dir/main.cpp.obj.modmap	8dd4e0c56ffffc9b
+1195	1314	7671157208652177	huawei.exe	597ef4c29eda45a2

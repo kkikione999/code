@@ -1,0 +1,18 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "Debug",
+	"cxx-modules" : {},
+	"dir-cur-bld" : "D:/code/leetcode/IOtest/cmake-build-debug",
+	"dir-cur-src" : "D:/code/leetcode/IOtest",
+	"dir-top-bld" : "D:/code/leetcode/IOtest/cmake-build-debug",
+	"dir-top-src" : "D:/code/leetcode/IOtest",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : [],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "D:/code/leetcode/IOtest/cmake-build-debug/CMakeFiles/IOtest.dir"
+}
