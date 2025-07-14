@@ -61,10 +61,10 @@ const osThreadAttr_t BLUE_LED_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
-/* Definitions for uart */
-osThreadId_t uartHandle;
-const osThreadAttr_t uart_attributes = {
-  .name = "uart",
+/* Definitions for uart_receive */
+osThreadId_t uart_receiveHandle;
+const osThreadAttr_t uart_receive_attributes = {
+  .name = "uart_receive",
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
@@ -83,7 +83,7 @@ const osThreadAttr_t KEY_attributes = {
 
 void redLed(void *argument);
 void blueLed(void *argument);
-void Uart_send(void *argument);
+void message(void *argument);
 void key_ctrl(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
@@ -121,8 +121,8 @@ void MX_FREERTOS_Init(void) {
   /* creation of BLUE_LED */
   BLUE_LEDHandle = osThreadNew(blueLed, NULL, &BLUE_LED_attributes);
 
-  /* creation of uart */
-  uartHandle = osThreadNew(Uart_send, NULL, &uart_attributes);
+  /* creation of uart_receive */
+  uart_receiveHandle = osThreadNew(message, NULL, &uart_receive_attributes);
 
   /* creation of KEY */
   KEYHandle = osThreadNew(key_ctrl, NULL, &KEY_attributes);
@@ -150,7 +150,7 @@ void redLed(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	RED_TOGGLE();
+	  RED_TOGGLE();
     osDelay(pdMS_TO_TICKS(1000));
   }
   /* USER CODE END redLed */
@@ -169,30 +169,36 @@ void blueLed(void *argument)
   /* Infinite loop */
   for(;;)
   {
-	GREEN_TOGGLE();
+	  GREEN_TOGGLE();
     osDelay(pdMS_TO_TICKS(500));
   }
   /* USER CODE END blueLed */
 }
 
-/* USER CODE BEGIN Header_Uart_send */
+/* USER CODE BEGIN Header_message */
 /**
-* @brief Function implementing the uart thread.
+* @brief Function implementing the uart_receive thread.
 * @param argument: Not used
 * @retval None
 */
-/* USER CODE END Header_Uart_send */
-void Uart_send(void *argument)
+/* USER CODE END Header_message */
+void message(void *argument)
 {
-  /* USER CODE BEGIN Uart_send */
-	int i = 0;
+  /* USER CODE BEGIN message */
   /* Infinite loop */
+  char message_buffer[100];
   for(;;)
   {
-	printf("it is %d\r\n", i);
-    osDelay(pdMS_TO_TICKS(1000));
+    //方案一：轮询接收 一定要接受完100个字节才结束
+    // HAL_UART_Receive(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1, HAL_MAX_DELAY);
+    // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
+    // printf("Received message: %s\r\n", message_buffer);
+    //方案二：中断接收
+    // HAL_UART_Receive_IT(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1);
+    // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
+    // printf("Received message: %s\r\n", message_buffer);
   }
-  /* USER CODE END Uart_send */
+  /* USER CODE END message */
 }
 
 /* USER CODE BEGIN Header_key_ctrl */
@@ -206,9 +212,26 @@ void key_ctrl(void *argument)
 {
   /* USER CODE BEGIN key_ctrl */
   /* Infinite loop */
+  int key_val = 0xFF;
+  
   for(;;)
   {
-    osDelay(1);
+    key_val = KEY_scan();
+    if(key_val == KEY0_Press){
+      printf("KEY0 Pressed\r\n");
+      osThreadSuspend(RED_LEDHandle);
+      printf("RED LED Task suspend\r\n");
+    }else if(key_val == KEY1_Press){
+      printf("KEY1 Pressed\r\n");
+      osThreadResume(RED_LEDHandle);
+      printf("RED LED Task resume\r\n");
+    }else if(key_val == KEY2_Press){
+      printf("KEY2 Pressed\r\n");
+    }else if(key_val == WAKE_UP_Press){
+      osThreadSuspend(NULL);
+      printf("All Task suspend\r\n");
+      printf("WAKE_UP Pressed\r\n");
+    }
   }
   /* USER CODE END key_ctrl */
 }
