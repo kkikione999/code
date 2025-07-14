@@ -33,10 +33,7 @@ extern "C" {
 /* USER CODE END Includes */
 
 /* USER CODE BEGIN Private defines */
-#define RED_LED(x) HAL_GPIO_WritePin(GPIOB, RED_LED_Pin, (GPIO_PinState)x)
-#define GREEN_LED(x) HAL_GPIO_WritePin(GPIOB, GREEN_LED_Pin, (GPIO_PinState)x)
-#define RED_TOGGLE() HAL_GPIO_TogglePin(GPIOB, RED_LED_Pin)
-#define GREEN_TOGGLE() HAL_GPIO_TogglePin(GPIOB, GREEN_LED_Pin)
+
 /* USER CODE END Private defines */
 
 void MX_GPIO_Init(void);

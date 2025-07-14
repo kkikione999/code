@@ -68,6 +68,13 @@ const osThreadAttr_t uart_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for KEY */
+osThreadId_t KEYHandle;
+const osThreadAttr_t KEY_attributes = {
+  .name = "KEY",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -77,6 +84,7 @@ const osThreadAttr_t uart_attributes = {
 void redLed(void *argument);
 void blueLed(void *argument);
 void Uart_send(void *argument);
+void key_ctrl(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -116,6 +124,9 @@ void MX_FREERTOS_Init(void) {
   /* creation of uart */
   uartHandle = osThreadNew(Uart_send, NULL, &uart_attributes);
 
+  /* creation of KEY */
+  KEYHandle = osThreadNew(key_ctrl, NULL, &KEY_attributes);
+
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
@@ -140,7 +151,7 @@ void redLed(void *argument)
   for(;;)
   {
 	RED_TOGGLE();
-    osDelay(1000);
+    osDelay(pdMS_TO_TICKS(1000));
   }
   /* USER CODE END redLed */
 }
@@ -159,7 +170,7 @@ void blueLed(void *argument)
   for(;;)
   {
 	GREEN_TOGGLE();
-    osDelay(10000);
+    osDelay(pdMS_TO_TICKS(500));
   }
   /* USER CODE END blueLed */
 }
@@ -179,9 +190,27 @@ void Uart_send(void *argument)
   for(;;)
   {
 	printf("it is %d\r\n", i);
-    osDelay(10000);
+    osDelay(pdMS_TO_TICKS(1000));
   }
   /* USER CODE END Uart_send */
+}
+
+/* USER CODE BEGIN Header_key_ctrl */
+/**
+* @brief Function implementing the KEY thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_key_ctrl */
+void key_ctrl(void *argument)
+{
+  /* USER CODE BEGIN key_ctrl */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END key_ctrl */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -33,6 +33,9 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "gpio.h"
 #include "stdio.h"
+#include "usart.h"
+#include "cmsis_os2.h"
+#include "key.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
