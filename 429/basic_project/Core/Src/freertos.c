@@ -212,27 +212,21 @@ void key_ctrl(void *argument)
 {
   /* USER CODE BEGIN key_ctrl */
   /* Infinite loop */
-  int key_val = 0xFF;
-  
-  for(;;)
-  {
-    key_val = KEY_scan();
-    if(key_val == KEY0_Press){
-      printf("KEY0 Pressed\r\n");
-      osThreadSuspend(RED_LEDHandle);
-      printf("RED LED Task suspend\r\n");
-    }else if(key_val == KEY1_Press){
-      printf("KEY1 Pressed\r\n");
-      osThreadResume(RED_LEDHandle);
-      printf("RED LED Task resume\r\n");
-    }else if(key_val == KEY2_Press){
-      printf("KEY2 Pressed\r\n");
-    }else if(key_val == WAKE_UP_Press){
-      osThreadSuspend(NULL);
-      printf("All Task suspend\r\n");
-      printf("WAKE_UP Pressed\r\n");
+	uint8_t key = 0;
+    while(1)
+    {
+        key = key_scan(0);
+        if(key == KEY0_PRES)
+        {
+            printf("挂起task1\r\n");
+           
+        }else if(key == KEY1_PRES)
+        {
+            printf("在任务中恢复task1\r\n");
+            
+        }
+        vTaskDelay(10);
     }
-  }
   /* USER CODE END key_ctrl */
 }
 

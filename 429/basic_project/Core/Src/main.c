@@ -95,19 +95,19 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  uint32_t sendStartTime, sendEndTime;
-  
-  for (uint8_t i = 0; i < 1000; i++)
-  {
-    sprintf(message_buffer[i], "this is message number %d\n", i);
-  }
-  sendStartTime = HAL_GetTick();
-  for(uint8_t i = 0; i < 1000; i++)
-  {
-    printf("%s", message_buffer[i]);
-  }
-  sendEndTime = HAL_GetTick();
-  printf("Send 1000 messages cost %d ms\r\n", sendEndTime - sendStartTime);
+//  uint32_t , sendEndTime
+//  
+//  for (uint32_t i = ; i < 1000; i++)
+//  {
+//    sprintf(message_buffer[i], "this is message number %d\n", i);
+//  }
+//  sendStartTime = HAL_GetTick();
+//  for(uint32_t i = 0; i < 1000; i++)
+//  {
+//    printf("%s", message_buffer[i]);
+//  }
+//  sendEndTime = HAL_GetTick();
+//  printf("Send 1000 messages cost %d ms\r\n", sendEndTime - sendStartTime);
   /* USER CODE END 2 */
 
   /* Init scheduler */
