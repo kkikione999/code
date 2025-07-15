@@ -189,11 +189,11 @@ void message(void *argument)
   char message_buffer[100];
   for(;;)
   {
-    //·½°¸Ò»£ºÂÖÑ¯½ÓÊÕ Ò»¶¨Òª½ÓÊÜÍê100¸ö×Ö½Ú²Å½áÊø
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100ï¿½ï¿½ï¿½Ö½Ú²Å½ï¿½ï¿½ï¿½
     // HAL_UART_Receive(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1, HAL_MAX_DELAY);
     // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
     // printf("Received message: %s\r\n", message_buffer);
-    //·½°¸¶þ£ºÖÐ¶Ï½ÓÊÕ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï½ï¿½ï¿½ï¿½
     // HAL_UART_Receive_IT(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1);
     // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
     // printf("Received message: %s\r\n", message_buffer);
@@ -218,25 +218,25 @@ void key_ctrl(void *argument)
         key = key_scan();
         if(key == KEY0_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ¹ÒÆðtask1\r\n");
-            osThreadSuspend(RED_LEDHandle);  // ¹ÒÆðRED_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½task1\r\n");
+            osThreadSuspend(RED_LEDHandle);  // ï¿½ï¿½ï¿½ï¿½RED_LEDï¿½ï¿½ï¿½ï¿½
            
         }else if(key == KEY1_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ»Ö¸´task1\r\n");
-            osThreadResume(RED_LEDHandle);   // »Ö¸´RED_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»Ö¸ï¿½task1\r\n");
+            osThreadResume(RED_LEDHandle);   // ï¿½Ö¸ï¿½RED_LEDï¿½ï¿½ï¿½ï¿½
         }
         else if(key == KEY2_Press)
         {
-            printf("¹ÒÆðtask2\r\n");
-            osThreadSuspend(BLUE_LEDHandle); // ¹ÒÆðBLUE_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½task2\r\n");
+            osThreadSuspend(BLUE_LEDHandle); // ï¿½ï¿½ï¿½ï¿½BLUE_LEDï¿½ï¿½ï¿½ï¿½
         }
         else if(key == WAKE_UP_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ»Ö¸´task2\r\n");
-            osThreadResume(BLUE_LEDHandle);  // »Ö¸´BLUE_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»Ö¸ï¿½task2\r\n");
+            osThreadResume(BLUE_LEDHandle);  // ï¿½Ö¸ï¿½BLUE_LEDï¿½ï¿½ï¿½ï¿½
         }
-        osDelay(pdMS_TO_TICKS(5)); // ÑÓÊ±100ms
+        osDelay(pdMS_TO_TICKS(5)); // ï¿½ï¿½Ê±100ms
     }
   /* USER CODE END key_ctrl */
 }

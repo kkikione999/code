@@ -45,7 +45,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-char message_buffer[1000][24];
+//char message_buffer[1000][24];
 
 
 

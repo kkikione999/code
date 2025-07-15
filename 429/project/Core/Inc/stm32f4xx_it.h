@@ -1,9 +1,8 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : main.h
-  * @brief          : Header for main.c file.
-  *                   This file contains the common defines of the application.
+  * @file    stm32f4xx_it.h
+  * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -14,29 +13,21 @@
   * in the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
-  ******************************************************************************
+ ******************************************************************************
   */
 /* USER CODE END Header */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __STM32F4xx_IT_H
+#define __STM32F4xx_IT_H
 
 #ifdef __cplusplus
-extern "C" {
+ extern "C" {
 #endif
-
-/* Includes ------------------------------------------------------------------*/
-#include "stm32f4xx_hal.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "gpio.h"
-#include "stdio.h"
-#include "usart.h"
-#include "cmsis_os2.h"
-#include "key.h"
-#include "task.h"
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -55,32 +46,20 @@ extern "C" {
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/
-void Error_Handler(void);
-
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void DebugMon_Handler(void);
+void TIM7_IRQHandler(void);
+void DMA2_Stream7_IRQHandler(void);
 /* USER CODE BEGIN EFP */
 
 /* USER CODE END EFP */
-
-/* Private defines -----------------------------------------------------------*/
-#define KEY2_Pin GPIO_PIN_13
-#define KEY2_GPIO_Port GPIOC
-#define WAKE_UP_Pin GPIO_PIN_0
-#define WAKE_UP_GPIO_Port GPIOA
-#define KEY1_Pin GPIO_PIN_2
-#define KEY1_GPIO_Port GPIOH
-#define KEY0_Pin GPIO_PIN_3
-#define KEY0_GPIO_Port GPIOH
-#define GREEN_LED_Pin GPIO_PIN_0
-#define GREEN_LED_GPIO_Port GPIOB
-#define RED_LED_Pin GPIO_PIN_1
-#define RED_LED_GPIO_Port GPIOB
-
-/* USER CODE BEGIN Private defines */
-
-/* USER CODE END Private defines */
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __MAIN_H */
+#endif /* __STM32F4xx_IT_H */
