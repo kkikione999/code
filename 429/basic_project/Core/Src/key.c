@@ -31,8 +31,8 @@
 uint8_t key_scan(void)
 {
     static uint8_t keyval = 0;  /* 上次按键值 */
-    if(KEY0_ck || KEY1_ck || KEY2_ck || WK_UP_ck) {
-        osDelay(10);  /* 消抖延时 */
+    if(KEY0_ck || KEY1_ck || KEY2_ck || !WK_UP_ck) {
+        osDelay(20);  /* 消抖延时 */
         if (KEY0_ck)
         {
             keyval = KEY1_Press;     /* KEY0按下 */
@@ -42,7 +42,7 @@ uint8_t key_scan(void)
         }else if (KEY2_ck)
         {
             keyval = KEY2_Press;     /* KEY2按下 */
-        }else if (WK_UP_ck)
+        }else if (!WK_UP_ck)
         {
             keyval = WAKE_UP_Press;  /* WKUP按下 */
         }

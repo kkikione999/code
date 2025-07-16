@@ -131,35 +131,30 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef* i2cHandle)
 
 //获取SH3001的ID
 
-
-uint8_t ReadRegister(I2C_HandleTypeDef *hi2c, uint16_t devAddr, uint8_t regAddr) {
-    uint8_t txData[1];  // 用于发送寄存器地址
-    uint8_t rxData[1];  // 用于接收寄存器值
-
-    // Step 1: 发送从设备地址 + 写标志，并发送寄存器地址
-    txData[0] = regAddr;
-    if (HAL_I2C_Master_Transmit(hi2c, devAddr, txData, 1, 100) != HAL_OK) {
-        // 如果发送失败，返回错误
-        return 0xFF; // 表示读取失败
-    }
-
-    // Step 2: 重新发送从设备地址 + 读标志，并接收数据
-    if (HAL_I2C_Master_Receive(hi2c, devAddr, rxData, 1, 100) != HAL_OK) {
-        // 如果接收失败，返回错误
-        return 0xFF; // 表示读取失败
-    }
-
-    // 返回读取到的寄存器值
-    return rxData[0];
-}
-
+//The default ChipID of this device is 0x61
 uint16_t get_ID(void)
 {
   uint8_t ID = 0;
-  ID = ReadRegister(&hi2c2, SH3001_I2C_ADDR, 0x0F); // 读取ID寄存器
-  return ID;
+  if( HAL_I2C_Mem_Read(&hi2c2, SH3001_I2C_ADDR, SH3001_CHIP_ID, I2C_MEMADD_SIZE_8BIT, &ID, 1, HAL_MAX_DELAY)  == HAL_OK){
+    return ID;
+  } 
+  else{
+    return 0xFF;
+  }
 }
-
+//获取温度数据
+uint16_t get_temperature(void)
+{
+  uint8_t res[2] = {0};
+  uint16_t temperature = 0;
+  if( HAL_I2C_Mem_Read(&hi2c2, SH3001_I2C_ADDR, TEMPDATAL, I2C_MEMADD_SIZE_8BIT, res, 2, HAL_MAX_DELAY) == HAL_OK){
+    temperature = ((res[1] & 0x0F) << 8) | res[0]; // Combine the two bytes
+    return temperature; // Return the temperature value
+  } 
+  else{
+    return 0xFFFF; // Error
+  }
+}
 
 
 /* USER CODE END 1 */

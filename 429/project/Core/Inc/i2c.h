@@ -36,10 +36,11 @@ extern I2C_HandleTypeDef hi2c2;
 
 /* USER CODE BEGIN Private defines */
 //SH3001 I2C address
-#define SH3001_I2C_ADDR 0x36
-#define SH3001_I2C_ADDR_READ 0x6C
-#define SH3001_I2C_ADDR_WRITE 0x6D
+#define SH3001_I2C_ADDR 0x6C
+#define SH3001_CHIP_ID 0x0F
 
+#define TEMPDATAL 0x0C
+#define TEMPDATAH 0x0D
 
 
 /* USER CODE END Private defines */
