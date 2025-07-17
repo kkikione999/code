@@ -75,6 +75,25 @@ const osThreadAttr_t KEY_attributes = {
   .stack_size = 128 * 4,
   .priority = (osPriority_t) osPriorityLow,
 };
+/* Definitions for ask */
+osThreadId_t askHandle;
+const osThreadAttr_t ask_attributes = {
+  .name = "ask",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for ans */
+osThreadId_t ansHandle;
+const osThreadAttr_t ans_attributes = {
+  .name = "ans",
+  .stack_size = 128 * 4,
+  .priority = (osPriority_t) osPriorityLow,
+};
+/* Definitions for myQueue */
+osMessageQueueId_t myQueueHandle;
+const osMessageQueueAttr_t myQueue_attributes = {
+  .name = "myQueue"
+};
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -85,6 +104,8 @@ void redLed(void *argument);
 void blueLed(void *argument);
 void message(void *argument);
 void key_ctrl(void *argument);
+void asker(void *argument);
+void answer(void *argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -110,6 +131,10 @@ void MX_FREERTOS_Init(void) {
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
 
+  /* Create the queue(s) */
+  /* creation of myQueue */
+  myQueueHandle = osMessageQueueNew (16, sizeof(uint8_t), &myQueue_attributes);
+
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
@@ -126,6 +151,12 @@ void MX_FREERTOS_Init(void) {
 
   /* creation of KEY */
   KEYHandle = osThreadNew(key_ctrl, NULL, &KEY_attributes);
+
+  /* creation of ask */
+  askHandle = osThreadNew(asker, NULL, &ask_attributes);
+
+  /* creation of ans */
+  ansHandle = osThreadNew(answer, NULL, &ans_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -189,11 +220,11 @@ void message(void *argument)
   char message_buffer[100];
   for(;;)
   {
-    //·½°¸Ò»£ºÂÖÑ¯½ÓÊÕ Ò»¶¨Òª½ÓÊÜÍê100¸ö×Ö½Ú²Å½áÊø
+    //ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½ Ò»ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100ï¿½ï¿½ï¿½Ö½Ú²Å½ï¿½ï¿½ï¿½
     // HAL_UART_Receive(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1, HAL_MAX_DELAY);
     // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
     // printf("Received message: %s\r\n", message_buffer);
-    //·½°¸¶þ£ºÖÐ¶Ï½ÓÊÕ
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï½ï¿½ï¿½ï¿½
     // HAL_UART_Receive_IT(&huart1, (uint8_t *)message_buffer, sizeof(message_buffer)-1);
     // message_buffer[sizeof(message_buffer) - 1] = '\0'; // Ensure null termination
     // printf("Received message: %s\r\n", message_buffer);
@@ -218,27 +249,85 @@ void key_ctrl(void *argument)
         key = key_scan();
         if(key == KEY0_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ¹ÒÆðtask1\r\n");
-            osThreadSuspend(RED_LEDHandle);  // ¹ÒÆðRED_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹ï¿½ï¿½ï¿½task1\r\n");
+            osThreadSuspend(RED_LEDHandle);  // ï¿½ï¿½ï¿½ï¿½RED_LEDï¿½ï¿½ï¿½ï¿½
            
         }else if(key == KEY1_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ»Ö¸´task1\r\n");
-            osThreadResume(RED_LEDHandle);   // »Ö¸´RED_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»Ö¸ï¿½task1\r\n");
+            osThreadResume(RED_LEDHandle);   // ï¿½Ö¸ï¿½RED_LEDï¿½ï¿½ï¿½ï¿½
         }
         else if(key == KEY2_Press)
         {
-            printf("¹ÒÆðtask2\r\n");
-            osThreadSuspend(BLUE_LEDHandle); // ¹ÒÆðBLUE_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½task2\r\n");
+            osThreadSuspend(BLUE_LEDHandle); // ï¿½ï¿½ï¿½ï¿½BLUE_LEDï¿½ï¿½ï¿½ï¿½
         }
         else if(key == WAKE_UP_Press)
         {
-            printf("ÔÚÈÎÎñÖÐ»Ö¸´task2\r\n");
-            osThreadResume(BLUE_LEDHandle);  // »Ö¸´BLUE_LEDÈÎÎñ
+            printf("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð»Ö¸ï¿½task2\r\n");
+            osThreadResume(BLUE_LEDHandle);  // ï¿½Ö¸ï¿½BLUE_LEDï¿½ï¿½ï¿½ï¿½
         }
-        osDelay(pdMS_TO_TICKS(5)); // ÑÓÊ±100ms
+        osDelay(pdMS_TO_TICKS(5)); // ï¿½ï¿½Ê±100ms
     }
   /* USER CODE END key_ctrl */
+}
+
+/* USER CODE BEGIN Header_asker */
+/**
+* @brief Function implementing the ask thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_asker */
+void asker(void *argument)
+{
+  /* USER CODE BEGIN asker */
+  uint8_t ask_value = 0;
+  osStatus_t status;
+  /* Infinite loop */
+  for(;;)
+  {
+    if(key_scan() == WAKE_UP_Press)
+    {
+      status = osMessageQueuePut(myQueueHandle, &ask_value, 0U, osWaitForever);
+      if (status != osOK) {
+        printf("asker: queue is full\r\n");
+      } else {
+        printf("asker: sent = %d\r\n", ask_value);
+      }
+      ask_value++;
+    }
+    osDelay(pdMS_TO_TICKS(5));
+  }
+  /* USER CODE END asker */
+}
+
+/* USER CODE BEGIN Header_answer */
+/**
+* @brief Function implementing the ans thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_answer */
+void answer(void *argument)
+{
+  /* USER CODE BEGIN answer */
+  /* Infinite loop */
+  osStatus_t status;
+  uint8_t received_value;
+  for(;;)
+  {
+    if(key_scan() == KEY2_Press){
+      status = osMessageQueueGet(myQueueHandle, &received_value, NULL, osWaitForever);
+      if (status == osOK) {
+        printf("ans: received = %d\r\n", received_value);
+      } else {
+        printf("ans: queue is empty\r\n");
+      }
+    }
+    osDelay(pdMS_TO_TICKS(5)); // Simulate processing time
+  }
+  /* USER CODE END answer */
 }
 
 /* Private application code --------------------------------------------------*/
